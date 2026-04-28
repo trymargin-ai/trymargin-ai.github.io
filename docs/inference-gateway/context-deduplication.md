@@ -78,8 +78,8 @@ Conversation history beyond a configurable window (default: last 8 turns) is com
 | **Token Reduction (Agentic)** | 20-40% |
 | **Token Reduction (Multi-Turn Chat)** | 10-25% |
 | **Token Reduction (RAG Pipelines)** | 15-30% |
-| **Processing Latency** | <0.3ms |
-| **Memory Overhead** | <2MB per active session |
+| **Processing Latency** | &lt;0.3ms |
+| **Memory Overhead** | &lt;2MB per active session |
 
 ---
 

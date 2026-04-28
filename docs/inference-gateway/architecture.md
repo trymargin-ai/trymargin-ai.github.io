@@ -57,7 +57,7 @@ The Prompt Compression Engine operates at the wire boundary between your applica
 - **Message-Level Deduplication:** Hashes each message in the `messages[]` array using SHA-256. Identical message blocks across consecutive requests are collapsed into compressed references.
 - **Semantic Chunking:** For oversized context windows, the engine identifies semantically redundant passages and consolidates them without loss of critical information.
 
-**Performance:** 30-60% input token reduction at <0.5ms processing latency.
+**Performance:** 30-60% input token reduction at &lt;0.5ms processing latency.
 
 ### Caching Layer
 
@@ -72,7 +72,7 @@ The Semantic Cache is built on two tiers:
 
 Two-layer hybrid classification engine:
 
-- **Layer 1 — Heuristic Fast Path (<1ms):** Keyword analysis, prompt length scoring, structural cue detection (code blocks, JSON, mathematical notation). High-confidence classifications bypass ML entirely.
+- **Layer 1 — Heuristic Fast Path (&lt;1ms):** Keyword analysis, prompt length scoring, structural cue detection (code blocks, JSON, mathematical notation). High-confidence classifications bypass ML entirely.
 - **Layer 2 — Embedding Classifier:** For ambiguous prompts (heuristic score in the 0-5 range), the engine computes cosine similarity against pre-computed exemplar embeddings for "complex" and "trivial" workload archetypes.
 
 **Accuracy:** 95%+ classification accuracy on production workloads. False positives (routing a complex task to a lean model) are caught by the auto-failover cascade.
@@ -81,7 +81,7 @@ Two-layer hybrid classification engine:
 
 Two-pass PII redaction pipeline:
 
-- **Pass 1 — Regex Engine:** Compiled regex patterns for SSN, credit card (Luhn-validated), email, phone, IP address, and custom entity types. Covers ~80% of PII patterns in <1ms.
+- **Pass 1 — Regex Engine:** Compiled regex patterns for SSN, credit card (Luhn-validated), email, phone, IP address, and custom entity types. Covers ~80% of PII patterns in &lt;1ms.
 - **Pass 2 — Presidio NLP:** Microsoft Presidio's SpaCy-backed Named Entity Recognition engine for contextual PII detection. Understands that "Order #555-1234" is an order number, not a phone number.
 - **Prompt Injection Shield:** Multi-layer defense including Unicode homoglyph normalization, Base64 chunk decoding, and pattern matching against known injection signatures.
 
@@ -227,10 +227,10 @@ spec:
 | **Added Latency (p99)** | 2.8ms |
 | **Cache Hit Latency** | 0.3ms |
 | **Max Concurrent Streams** | 5,000+ (single instance) |
-| **Semantic Cache Search** | <1ms (FAISS, 10K vectors) |
-| **PII Redaction (Pass 1)** | <1ms |
+| **Semantic Cache Search** | &lt;1ms (FAISS, 10K vectors) |
+| **PII Redaction (Pass 1)** | &lt;1ms |
 | **PII Redaction (Pass 2)** | 3-8ms (Presidio NLP) |
-| **Routing Classification** | <1ms (heuristic) / 5ms (embedding) |
+| **Routing Classification** | &lt;1ms (heuristic) / 5ms (embedding) |
 
 ### Scalability
 - **Horizontal:** API layer scales horizontally behind any load balancer (Nginx, HAProxy, ALB).

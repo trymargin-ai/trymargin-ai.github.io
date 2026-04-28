@@ -16,7 +16,7 @@ The cache operates on two tiers, combining exact matching for speed with semanti
 
 Every incoming prompt is normalized (lowercased, whitespace-stripped) and hashed using SHA-256. The hash serves as a key in the Redis response store.
 
-- **Lookup Time:** O(1) — typically <0.1ms.
+- **Lookup Time:** O(1) — typically &lt;0.1ms.
 - **Hit Condition:** Identical prompt text after normalization.
 - **Storage:** Full serialized response object with TTL.
 
@@ -24,7 +24,7 @@ Every incoming prompt is normalized (lowercased, whitespace-stripped) and hashed
 
 When Tier 1 misses, the prompt is encoded into a **384-dimensional embedding vector** using the `all-MiniLM-L6-v2` sentence-transformer model. The vector is compared against all indexed embeddings using FAISS IndexIDMap.
 
-- **Lookup Time:** <1ms for indexes up to 100K vectors.
+- **Lookup Time:** &lt;1ms for indexes up to 100K vectors.
 - **Hit Condition:** Cosine similarity exceeds configurable threshold (default: 0.92).
 - **Index Type:** FAISS IndexIDMap wrapping IndexFlatIP (inner product, equivalent to cosine similarity on L2-normalized vectors).
 
@@ -43,8 +43,8 @@ Unlike basic caching implementations that store vectors and responses independen
 
 | Metric | Value |
 | :--- | :--- |
-| **Exact Cache Hit Latency** | <0.1ms |
-| **Semantic Cache Hit Latency** | <1ms |
+| **Exact Cache Hit Latency** | &lt;0.1ms |
+| **Semantic Cache Hit Latency** | &lt;1ms |
 | **Embedding Generation** | ~5ms (per prompt) |
 | **Index Capacity** | 100K+ vectors per instance |
 | **Memory Footprint** | ~150MB per 100K vectors |

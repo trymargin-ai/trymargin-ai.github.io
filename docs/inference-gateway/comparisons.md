@@ -21,7 +21,7 @@ Margin AI is the only inference control plane that optimizes **both the input an
 | **Auto-Failover** | ✅ Mid-stream, health-aware | ✅ Basic retry | ⚠️ Manual config | ✅ Basic retry | ❌ |
 | **Streaming Analytics** | ✅ Full SSE token tracking | ⚠️ Partial | ❌ Lost during stream | ⚠️ Partial | ✅ |
 | **CFO Dashboard** | ✅ Live Avoided Spend | ⚠️ Basic request logs | ❌ Basic AI logs | ✅ Good | ✅ Good |
-| **Added Latency** | **<2ms** | <5ms | **~50ms** | ~30ms | ~20ms |
+| **Added Latency** | **&lt;2ms** | &lt;5ms | **~50ms** | ~30ms | ~20ms |
 | **100+ LLM Support** | ✅ | ✅ | ❌ (~10 providers) | ✅ | ✅ |
 | **Deployment** | **VPC / On-Prem / Air-Gapped** | VPC / Cloud | **Hosted externally only** | **Hosted externally only** | **Hosted externally only** |
 | **Data Privacy** | ✅ Zero egress | ✅ Self-hosted option | ❌ Data exits your VPC | ❌ Data exits your VPC | ❌ Data exits your VPC |
@@ -51,7 +51,7 @@ Margin AI is the only inference control plane that optimizes **both the input an
 
 | Dimension | Margin AI | Cloudflare AI Gateway |
 | :--- | :--- | :--- |
-| **Latency** | <2ms (VPC-local) | ~50ms (edge round-trip) |
+| **Latency** | &lt;2ms (VPC-local) | ~50ms (edge round-trip) |
 | **Data Privacy** | Zero egress, VPC-local | Data transits Cloudflare's network |
 | **Optimization Depth** | 6-layer full-stack | Basic caching only |
 | **Provider Support** | 100+ | ~10 providers |
@@ -102,7 +102,7 @@ Margin AI is the only inference control plane that optimizes **both the input an
 
 ---
 
-**Margin AI is the only gateway that compresses, deduplicates, caches, routes, redacts, and fails over — in a single <2ms pipeline, entirely within your VPC, for free.**
+**Margin AI is the only gateway that compresses, deduplicates, caches, routes, redacts, and fails over — in a single &lt;2ms pipeline, entirely within your VPC, for free.**
 
 ---
 

@@ -23,7 +23,7 @@ Every one of these prompts, sent to OpenAI or Anthropic, represents a potential 
 
 ## How It Works
 
-### Pass 1: High-Speed Regex Engine (<1ms)
+### Pass 1: High-Speed Regex Engine (&lt;1ms)
 
 Compiled regex patterns detect high-confidence PII entities in sub-millisecond time:
 
@@ -37,7 +37,7 @@ Compiled regex patterns detect high-confidence PII entities in sub-millisecond t
 | **Custom** | User-defined patterns | MRN-12345678 | `[CUSTOM_ENTITY]` |
 
 **Coverage:** ~80% of PII entities in production workloads.
-**Latency:** <1ms for payloads up to 50KB.
+**Latency:** &lt;1ms for payloads up to 50KB.
 
 ### Pass 2: Presidio NLP Deep Scan (3-8ms)
 
@@ -134,11 +134,11 @@ CUSTOM_REDACTION_PATTERNS = {
 
 | Metric | Value |
 | :--- | :--- |
-| **Pass 1 Latency (Regex)** | <1ms |
+| **Pass 1 Latency (Regex)** | &lt;1ms |
 | **Pass 2 Latency (Presidio)** | 3-8ms |
-| **Total DLP Pipeline** | <10ms |
-| **False Negative Rate** | <0.1% (credit cards, SSNs) |
-| **False Positive Rate** | <2% (names, addresses) |
+| **Total DLP Pipeline** | &lt;10ms |
+| **False Negative Rate** | &lt;0.1% (credit cards, SSNs) |
+| **False Positive Rate** | &lt;2% (names, addresses) |
 | **Max Payload Size** | 100KB+ |
 
 ---

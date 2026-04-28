@@ -34,7 +34,7 @@ But in a typical agentic workflow:
 
 ## How It Works
 
-### Layer 1: Heuristic Fast Path (<1ms)
+### Layer 1: Heuristic Fast Path (&lt;1ms)
 
 A high-speed scoring engine that resolves obvious cases without any ML overhead:
 
@@ -151,11 +151,11 @@ routing_engine.complex_exemplars.extend([
 
 | Metric | Value |
 | :--- | :--- |
-| **Layer 1 Classification Latency** | <1ms |
+| **Layer 1 Classification Latency** | &lt;1ms |
 | **Layer 2 Classification Latency** | ~5ms |
 | **Classification Accuracy** | 95%+ |
 | **Typical Cost Reduction (Routing Only)** | 40-60% |
-| **False Positive Rate** | <3% (caught by auto-failover) |
+| **False Positive Rate** | &lt;3% (caught by auto-failover) |
 
 ---
 

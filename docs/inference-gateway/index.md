@@ -25,7 +25,7 @@ Margin AI solves all three simultaneously through a **six-layer inference optimi
 - **Wire-Level Prompt Compression** — Proprietary payload optimization that reduces input tokens by 30-60% without altering semantic content.
 - **Stateful Context Deduplication** — Hash-based detection and intelligent collapse of repeated system prompts and conversation context across agentic loops.
 - **Token Budget Enforcement** — Configurable input token ceilings with intelligent truncation strategies that preserve critical context.
-- **Sub-Millisecond Semantic Caching** — FAISS-powered vector similarity search with ID-mapped Redis response store. Exact and fuzzy cache hits at <1ms latency.
+- **Sub-Millisecond Semantic Caching** — FAISS-powered vector similarity search with ID-mapped Redis response store. Exact and fuzzy cache hits at &lt;1ms latency.
 - **Hybrid Intelligent Routing** — Two-layer classification engine (heuristic fast-path + sentence-transformer embeddings) that routes each request to the most cost-effective model capable of handling it.
 - **Automated PII Redaction** — Two-pass Data Loss Prevention pipeline combining regex pattern matching with Microsoft Presidio's contextual NLP engine.
 
@@ -57,7 +57,7 @@ Data integrity is guaranteed through ID-mapped synchronization between the FAISS
 
 A hybrid two-layer routing classifier that evaluates every request's complexity before selecting the optimal model:
 
-- **Layer 1 (Fast Path):** Heuristic scoring based on keyword analysis, prompt length, structural cues (code blocks, JSON), and question complexity. Resolves obvious cases in **<1ms**.
+- **Layer 1 (Fast Path):** Heuristic scoring based on keyword analysis, prompt length, structural cues (code blocks, JSON), and question complexity. Resolves obvious cases in **&lt;1ms**.
 - **Layer 2 (Smart Path):** For ambiguous prompts, a sentence-transformer embedding model classifies the request against pre-computed exemplar sets for complex vs. trivial workloads using cosine similarity scoring.
 
 Result: Trivial tasks route to $0.05/M-token models. Complex reasoning routes to GPT-4o or Claude. You only pay for the intelligence you actually need.
@@ -68,7 +68,7 @@ Result: Trivial tasks route to $0.05/M-token models. Complex reasoning routes to
 
 Two-pass Data Loss Prevention pipeline that operates on the full conversation history before any payload exits your VPC:
 
-- **Pass 1 (Fast Regex):** High-speed pattern matching for credit cards, SSNs, emails, phone numbers, IP addresses, and custom entity types. Covers ~80% of PII in **<1ms**.
+- **Pass 1 (Fast Regex):** High-speed pattern matching for credit cards, SSNs, emails, phone numbers, IP addresses, and custom entity types. Covers ~80% of PII in **&lt;1ms**.
 - **Pass 2 (Presidio NLP):** Microsoft Presidio's contextual NLP engine for deep entity recognition — understands that "Order #555-1234" is NOT a phone number.
 - **Prompt Injection Detection:** Multi-layer defense against adversarial prompts including Unicode homoglyph normalization and Base64 payload decoding.
 
@@ -78,7 +78,7 @@ Two-pass Data Loss Prevention pipeline that operates on the full conversation hi
 
 If OpenAI returns a `429`, Anthropic experiences latency degradation, or any provider throws an error, Margin AI automatically cascades the request to the next best provider **mid-stream** — preserving the SSE connection to your client.
 
-Provider health is monitored continuously. Failover decisions are made in <5ms with zero client-side awareness.
+Provider health is monitored continuously. Failover decisions are made in &lt;5ms with zero client-side awareness.
 
 **Result:** 99.999% effective uptime across your AI workloads, regardless of any single provider's reliability.
 
@@ -113,7 +113,7 @@ Configurable per-key and per-request input token ceilings. When a prompt exceeds
 | **Auto-Failover** | ✅ Mid-stream | ✅ Basic | ⚠️ Manual | ✅ Basic | ❌ None |
 | **Streaming Analytics** | ✅ Full SSE tracking | ⚠️ Partial | ❌ Lost during stream | ⚠️ Partial | ✅ Yes |
 | **Deployment** | VPC / On-Prem | VPC / Cloud | Hosted (external) | Hosted (external) | Hosted (external) |
-| **Added Latency** | **<2ms** | <5ms | ~50ms | ~30ms | ~20ms |
+| **Added Latency** | **&lt;2ms** | &lt;5ms | ~50ms | ~30ms | ~20ms |
 | **Pricing** | **Free / OSS** | Free / Enterprise | Usage-based | Usage-based | Usage-based |
 
 [Full comparison →](https://trymargin-ai.github.io/inference-gateway/comparisons)

@@ -68,7 +68,7 @@ After compression, the engine runs a checksum to verify that the semantic conten
 | Metric | Value |
 | :--- | :--- |
 | **Average Token Reduction** | 30-60% (payload-dependent) |
-| **Processing Latency** | <0.5ms |
+| **Processing Latency** | &lt;0.5ms |
 | **Semantic Fidelity** | 100% (validated per-request) |
 | **Supported Payload Types** | JSON, tool definitions, conversation arrays, schema objects |
 
