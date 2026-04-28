@@ -1,0 +1,69 @@
+/**
+ * Any CSS included here will be global. The rule-of-thumb is to design your
+ * stylesheets in a modular fashion.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --ifm-color-primary: #2563eb;
+  --ifm-color-primary-dark: #1d4ed8;
+  --ifm-color-primary-darker: #1e40af;
+  --ifm-color-primary-darkest: #1e3a8a;
+  --ifm-color-primary-light: #3b82f6;
+  --ifm-color-primary-lighter: #60a5fa;
+  --ifm-color-primary-lightest: #93c5fd;
+  --ifm-code-font-size: 90%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Pratibimba-Grade Dark Mode Aesthetics */
+[data-theme='dark'] {
+  --ifm-color-primary: #6366f1;
+  /* Indigo 500 */
+  --ifm-color-primary-dark: #4f46e5;
+  --ifm-color-primary-darker: #4338ca;
+  --ifm-color-primary-darkest: #3730a3;
+  --ifm-color-primary-light: #818cf8;
+  --ifm-color-primary-lighter: #9333ea;
+  --ifm-color-primary-lightest: #a5b4fc;
+  --docusaurus-highlighted-code-line-bg: rgba(99, 102, 241, 0.15);
+  --ifm-background-color: #0d1117;
+  /* GitHub Dark */
+  --ifm-navbar-background-color: #0d1117;
+  --ifm-footer-background-color: #0d1117;
+  --ifm-card-background-color: #161b22;
+}
+
+.navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #30363d;
+}
+
+.footer {
+  border-top: 1px solid #30363d;
+}
+
+/* Professional table styling */
+table {
+  display: table;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+th {
+  background-color: var(--ifm-color-emphasis-100);
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: var(--ifm-color-emphasis-0);
+}
+
+/* Enterprise-grade callouts */
+.admonition {
+  border-radius: 8px;
+  border-left-width: 4px;
+}
