@@ -8,41 +8,41 @@ Margin AI's architecture is engineered for enterprise-scale deployments with sub
 
 ## High-Level Architecture
 
-```
-                        ┌─────────────────────────────────────────────────────┐
-                        │              MARGIN AI CONTROL PLANE                │
-                        │                                                     │
-  Client Request        │  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
-  (OpenAI-compatible)   │  │  Auth &   │  │   PII    │  │     Prompt       │  │
-  ─────────────────────►│  │  Rate     │─►│ Redaction│─►│   Compression    │  │
-                        │  │  Limiter  │  │  (DLP)   │  │   Engine         │  │
-                        │  └──────────┘  └──────────┘  └────────┬─────────┘  │
-                        │                                        │            │
-                        │  ┌──────────────────┐  ┌──────────────▼─────────┐  │
-                        │  │  Token Budget     │  │  Context              │  │
-                        │  │  Guard            │◄─┤  Deduplication        │  │
-                        │  └────────┬─────────┘  └──────────────────────┘  │
-                        │           │                                       │
-                        │  ┌────────▼─────────┐                            │
-                        │  │  Semantic Cache   │── Cache Hit ──► Response   │
-                        │  │  (FAISS + Redis)  │                           │
-                        │  └────────┬─────────┘                            │
-                        │           │ Cache Miss                            │
-                        │  ┌────────▼─────────┐                            │
-                        │  │  Hybrid Routing   │                            │
-                        │  │  Engine           │                            │
-                        │  └────────┬─────────┘                            │
-                        │           │                                       │
-                        │  ┌────────▼─────────┐    ┌──────────────────┐    │
-                        │  │  Provider Engine  │───►│  Auto-Failover   │    │
-                        │  │  (100+ LLMs)     │◄───┤  Cascade         │    │
-                        │  └────────┬─────────┘    └──────────────────┘    │
-                        │           │                                       │
-                        │  ┌────────▼─────────┐                            │
-                        │  │  Analytics &      │                            │
-                        │  │  CFO Dashboard    │                            │
-                        │  └──────────────────┘                            │
-                        └─────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Client(["Client Request<br/>(OpenAI-compatible)"])
+    Return(["Client Response"])
+
+    subgraph MarginAI ["Margin AI Control Plane"]
+        direction TB
+        Auth["Auth & Rate Limiter"]
+        PII["PII Redaction (DLP)"]
+        Compress["Prompt Compression Engine"]
+        Dedup["Context Deduplication"]
+        Guard["Token Budget Guard"]
+        Cache{"Semantic Cache<br/>(FAISS + Redis)"}
+        Router{"Hybrid Routing Engine"}
+        Provider["Provider Engine<br/>(100+ LLMs)"]
+        Failover["Auto-Failover Cascade"]
+        Analytics["Analytics & CFO Dashboard"]
+
+        Auth --> PII
+        PII --> Compress
+        Compress --> Dedup
+        Dedup --> Guard
+        Guard --> Cache
+        
+        Cache -- "Cache Miss" --> Router
+        
+        Router --> Provider
+        Provider <-->|"Mid-stream Reroute"| Failover
+        
+        Provider --> Analytics
+    end
+
+    Client --> Auth
+    Cache -- "Cache Hit (&lt;1ms)" --> Return
+    Analytics --> Return
 ```
 
 ---
